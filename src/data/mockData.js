@@ -45,18 +45,21 @@ export const sensorMetrics = [
   {
     name: 'Scalp Temperature',
     value: '36.8°C',
+    progress: '72%',
     status: 'Stable',
     insight: 'Within healthy dermatology range',
   },
   {
     name: 'Moisture Index',
     value: '61%',
+    progress: '61%',
     status: 'Watch',
     insight: 'Hydration trending below personal baseline',
   },
   {
     name: 'pH Balance',
     value: '5.4',
+    progress: '54%',
     status: 'Optimal',
     insight: 'Balanced acidity for healthy scalp barrier',
   },

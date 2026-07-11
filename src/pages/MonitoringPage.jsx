@@ -17,7 +17,7 @@ function MonitoringPage() {
             <div className="sensor-panel">
               <strong className="metric-value">{metric.value}</strong>
               <div className="sensor-bar">
-                <span style={{ width: metric.name === 'Scalp Temperature' ? '72%' : metric.name === 'Moisture Index' ? '61%' : '54%' }} />
+                <span style={{ width: metric.progress }} />
               </div>
               <p>Status: {metric.status}</p>
             </div>
