@@ -5,8 +5,8 @@ import { useAuth } from '../context/AuthContext.jsx'
 function LoginPage() {
   const { isAuthenticated, login } = useAuth()
   const location = useLocation()
-  const [email, setEmail] = useState('s.adams@trichoguard.ai')
-  const [password, setPassword] = useState('TrichoGuard')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   if (isAuthenticated) {
     return <Navigate to={location.state?.from || '/dashboard'} replace />
@@ -63,7 +63,10 @@ function LoginPage() {
           Open dashboard
         </button>
 
-        <p className="helper-text">Demo access uses mock authentication for product preview.</p>
+        <p className="helper-text">
+          Demo access uses mock authentication for product preview and accepts any entered
+          credentials.
+        </p>
       </form>
     </div>
   )
