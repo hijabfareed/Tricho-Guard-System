@@ -1,0 +1,24 @@
+{
+"someThingWentWrongDesc": "Something went wrong\\nPleaseTry again later.",
+  "noInternetConnectionDesc": "No Internet connection\\nHurry up! get wifi",
+  "errorUndefinedErrorhappened": "Something went wrong. Please try again",
+  "requestCancelled": "Request to the server was cancelled.",
+  "connectionTimedOut": "Connection timed out.",
+  "receivingTimeout": "Receiving timeout occurred.",
+  "requestTimeout": "Request send timeout.",
+  "noInternet": "No Internet.",
+  "unexpectedError": "Unexpected error occurred.",
+  "somethingWrong": "Something went wrong.",
+  "badRequest": "Bad request.",
+  "authenticationFailed": "Authentication failed.",
+  "authenticatedUserNotAllowed": "The authenticated user is not allowed to access the specified API endpoint.",
+  "resourceNotExist": "The requested resource does not exist.",
+  "methodNotAllowed": "Method not allowed. Please check the Allow header for the allowed HTTP methods.",
+  "unsupportedMediaType": "Unsupported media type. The requested content type or version number is invalid.",
+  "dataValidationFailed": "Data validation failed.",
+  "tooManyRequests": "Too many requests.",
+  "internalServerError": "Internal server error.",
+  "oopsSomethingWrong": "Oops something went wrong!",
+  "appTitle"  :"Haya Pay"
+
+}
