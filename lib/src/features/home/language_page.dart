@@ -58,9 +58,9 @@ class _LanguagePageState extends State<LanguagePage> {
             const SizedBox(height: 20),
 
             _languageCard(
-              title: "Arabic",
-              code: "ar",
-              flag: "🇸🇦",
+              title: "اردو",
+              code: "ur",
+              flag: "🇵🇰",
             ),
 
           ],

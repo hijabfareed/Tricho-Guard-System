@@ -98,8 +98,8 @@ class _MyAppState extends ConsumerState<MyApp> with WidgetsBindingObserver {
         storage.read('appLanguage') ?? "en",
       ),
       supportedLocales: const [
-        Locale("ar"),
         Locale("en"),
+        Locale("ur"),
       ],
       debugShowCheckedModeBanner: false,
       navigatorKey: getIt<NavigationService>().navigatorKey,

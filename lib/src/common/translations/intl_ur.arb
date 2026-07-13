@@ -1,0 +1,23 @@
+{
+"someThingWentWrongDesc": "کچھ غلط ہوگیا\nبراہ کرم بعد میں دوبارہ کوشش کریں۔",
+  "noInternetConnectionDesc": "انٹرنیٹ کنکشن نہیں ہے\nجلدی کریں! وائی فائی حاصل کریں",
+  "errorUndefinedErrorhappened": "کچھ غلط ہوگیا۔ براہ کرم دوبارہ کوشش کریں",
+  "requestCancelled": "سرور کو درخواست منسوخ کر دی گئی۔",
+  "connectionTimedOut": "کنکشن کا وقت ختم ہوگیا۔",
+  "receivingTimeout": "وصول کرنے کا وقت ختم ہوگیا۔",
+  "requestTimeout": "درخواست بھیجنے کا وقت ختم ہوگیا۔",
+  "noInternet": "انٹرنیٹ نہیں ہے۔",
+  "unexpectedError": "غیر متوقع خرابی پیش آئی۔",
+  "somethingWrong": "کچھ غلط ہوگیا۔",
+  "badRequest": "غلط درخواست۔",
+  "authenticationFailed": "توثیق ناکام ہوگئی۔",
+  "authenticatedUserNotAllowed": "توثیق شدہ صارف کو مخصوص API تک رسائی کی اجازت نہیں ہے۔",
+  "resourceNotExist": "درخواست کردہ وسیلہ موجود نہیں ہے۔",
+  "methodNotAllowed": "طریقہ کار کی اجازت نہیں ہے۔",
+  "unsupportedMediaType": "غیر معاون میڈیا قسم۔",
+  "dataValidationFailed": "ڈیٹا کی توثیق ناکام ہوئی۔",
+  "tooManyRequests": "بہت زیادہ درخواستیں۔",
+  "internalServerError": "اندرونی سرور کی خرابی۔",
+  "oopsSomethingWrong": "اوہ! کچھ غلط ہوگیا!",
+  "appTitle": "TrichoGuard"
+}
