@@ -6,6 +6,7 @@ import 'package:al_hair_app/src/common/widget/common_scaffold.dart';
 import 'package:al_hair_app/src/constants/navigation_path.dart';
 import 'package:al_hair_app/src/di/service_locator.dart';
 import 'package:al_hair_app/src/services/navigation_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -29,9 +30,20 @@ class _SplashPageState extends State<SplashPage> {
 
       final String? userId = storage.read('userid');
       final String? role = storage.read('role');
+      final currentUser = FirebaseAuth.instance.currentUser;
 
       /// 🔒 USER NOT LOGGED IN
       if (userId == null) {
+        getIt<NavigationService>()
+            .goBackUntilAndPush(NavigationPath.onboardingPage);
+        return;
+      }
+
+      /// On web, stale local storage can remain even when Firebase auth session is gone.
+      /// Validate auth before allowing dashboard navigation.
+      if (currentUser == null || currentUser.uid != userId) {
+        storage.remove('userid');
+        storage.remove('role');
         getIt<NavigationService>()
             .goBackUntilAndPush(NavigationPath.onboardingPage);
         return;
