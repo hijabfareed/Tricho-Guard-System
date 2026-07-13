@@ -1,7 +1,6 @@
 import 'package:al_hair_app/src/common/widget/common_scaffold.dart';
-import 'package:al_hair_app/src/services/navigation_service.dart';
-import 'package:al_hair_app/src/di/service_locator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LanguagePage extends StatefulWidget {
@@ -24,16 +23,8 @@ class _LanguagePageState extends State<LanguagePage> {
   }
 
   void changeLanguage(String code) {
-
     storage.write('appLanguage', code);
-
-    getIt<NavigationService>()
-        .navigatorKey
-        .currentState!
-        .pushNamedAndRemoveUntil(
-      '/',
-          (route) => false,
-    );
+    Get.updateLocale(Locale(code));
   }
 
   @override

@@ -31,8 +31,40 @@
 
   <title>al_hair_app</title>
   <link rel="manifest" href="manifest.json">
+  <style>
+    #install-banner {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(10, 24, 48, 0.92);
+      color: #ffffff;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    #install-button {
+      border: 0;
+      border-radius: 8px;
+      padding: 8px 12px;
+      background: #2f80ed;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
+  <div id="install-banner" role="dialog" aria-live="polite">
+    <span>Prepare to install TrichoGuard for a better experience.</span>
+    <button id="install-button" type="button">Prepare to Install</button>
+  </div>
+
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader
@@ -42,5 +74,35 @@
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
   <script src="flutter_bootstrap.js" async></script>
+  <script>
+    let deferredPrompt;
+    const installBanner = document.getElementById('install-banner');
+    const installButton = document.getElementById('install-button');
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      deferredPrompt = event;
+      installBanner.style.display = 'flex';
+    });
+
+    installButton.addEventListener('click', async () => {
+      if (!deferredPrompt) {
+        alert('Install is currently unavailable. Please open this site in a supported browser and try again.');
+        return;
+      }
+
+      deferredPrompt.prompt();
+      const choiceResult = await deferredPrompt.userChoice;
+      if (choiceResult.outcome === 'accepted') {
+        installBanner.style.display = 'none';
+      }
+      deferredPrompt = null;
+    });
+
+    window.addEventListener('appinstalled', () => {
+      installBanner.style.display = 'none';
+      deferredPrompt = null;
+    });
+  </script>
 </body>
 </html>

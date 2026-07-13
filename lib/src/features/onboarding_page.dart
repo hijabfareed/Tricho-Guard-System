@@ -48,10 +48,18 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   Image.asset(
-                    Assets.imagesBg1,
+                    Assets.imagesOnboarding1,
+                    fit: BoxFit.contain,
+                    errorBuilder: (_, __, ___) => const Center(
+                      child: Icon(Icons.broken_image_outlined, size: 48),
+                    ),
                   ),
                   Image.asset(
                     Assets.imagesOnboarding2,
+                    fit: BoxFit.contain,
+                    errorBuilder: (_, __, ___) => const Center(
+                      child: Icon(Icons.broken_image_outlined, size: 48),
+                    ),
                   ),
                 ],
               ),

@@ -28,6 +28,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   final storage = GetStorage();
+  bool _iotWarningShown = false;
 
   String name = "";
   String doctorId = "";
@@ -42,6 +43,34 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     getUser();
     checkCompletedBookingsForReview();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showIotWarningIfNeeded();
+    });
+  }
+
+  void _showIotWarningIfNeeded() {
+    if (!mounted || _iotWarningShown) return;
+
+    final bool isIotConnected = storage.read('iotConnected') == true;
+    if (isIotConnected) return;
+
+    _iotWarningShown = true;
+
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text("IoT Device Not Connected"),
+        content: const Text(
+          "Sorry, your IoT device is not connected. Due to this, the AI Scalp Scan and AI image upload disease prediction modules may not work properly.",
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text("OK"),
+          ),
+        ],
+      ),
+    );
   }
 
 

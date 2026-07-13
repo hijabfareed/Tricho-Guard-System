@@ -2,11 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter_bluetooth_serial_plus/flutter_bluetooth_serial_plus.dart';
+import 'package:get_storage/get_storage.dart';
 import 'ml_service.dart';
 
 class IoTService {
   BluetoothConnection? connection;
   StreamSubscription<Uint8List>? _subscription;
+  final GetStorage _storage = GetStorage();
 
   final StreamController<Map<String, dynamic>> _controller =
   StreamController.broadcast();
@@ -29,6 +31,7 @@ class IoTService {
 
       await _subscription?.cancel();
       await connection?.close();
+      _storage.write('iotConnected', false);
 
       await _mlService.loadModel();
 
@@ -39,9 +42,11 @@ class IoTService {
         "type": "status",
         "message": "✅ Connected Successfully"
       });
+      _storage.write('iotConnected', true);
 
       _listenForData();
     } catch (e) {
+      _storage.write('iotConnected', false);
       _controller.add({
         "type": "error",
         "message": "❌ Connection Failed"
@@ -99,6 +104,7 @@ class IoTService {
   Future<void> disconnect() async {
     await _subscription?.cancel();
     await connection?.close();
+    _storage.write('iotConnected', false);
 
     _controller.add({
       "type": "status",
