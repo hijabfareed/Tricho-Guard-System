@@ -34,18 +34,20 @@
   <style>
     #install-banner {
       position: fixed;
-      right: 16px;
-      bottom: 16px;
+      left: 50%;
+      top: 20px;
+      transform: translateX(-50%);
       z-index: 9999;
       display: none;
       align-items: center;
       gap: 10px;
-      padding: 12px 14px;
+      padding: 12px 12px 12px 14px;
       border-radius: 12px;
       background: rgba(10, 24, 48, 0.92);
       color: #ffffff;
       font-family: "Segoe UI", Tahoma, sans-serif;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: min(92vw, 540px);
     }
 
     #install-button {
@@ -57,12 +59,28 @@
       font-weight: 600;
       cursor: pointer;
     }
+
+    #install-close {
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    #install-close:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
   </style>
 </head>
 <body>
   <div id="install-banner" role="dialog" aria-live="polite">
     <span>Prepare to install TrichoGuard for a better experience.</span>
     <button id="install-button" type="button">Prepare to Install</button>
+    <button id="install-close" type="button" aria-label="Close install prompt">&times;</button>
   </div>
 
   <!--
@@ -76,13 +94,17 @@
   <script src="flutter_bootstrap.js" async></script>
   <script>
     let deferredPrompt;
+    let installPromptDismissed = false;
     const installBanner = document.getElementById('install-banner');
     const installButton = document.getElementById('install-button');
+    const installClose = document.getElementById('install-close');
 
     window.addEventListener('beforeinstallprompt', (event) => {
       event.preventDefault();
       deferredPrompt = event;
-      installBanner.style.display = 'flex';
+      if (!installPromptDismissed) {
+        installBanner.style.display = 'flex';
+      }
     });
 
     installButton.addEventListener('click', async () => {
@@ -97,6 +119,11 @@
         installBanner.style.display = 'none';
       }
       deferredPrompt = null;
+    });
+
+    installClose.addEventListener('click', () => {
+      installPromptDismissed = true;
+      installBanner.style.display = 'none';
     });
 
     window.addEventListener('appinstalled', () => {
